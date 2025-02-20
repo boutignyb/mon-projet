@@ -58,7 +58,7 @@ jobs:
             pages: write
             id-token: write
         env:
-            name: github-pages
+            name: my-artifact
             url: ${{ github.repositoryUrl }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
