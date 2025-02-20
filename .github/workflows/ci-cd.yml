@@ -42,9 +42,6 @@ jobs:
             - name: Unit test
               run: npm run test:ci
             
-            - name: Check artifact size
-              run: du -sh dist/mon-projet
-            
             - name: Building app
               run: npm run build:prod
               
@@ -53,6 +50,9 @@ jobs:
               with:
                 name: github-pages
                 path: dist/mon-projet
+            
+            - name: Check artifact size
+              run: du -sh dist/mon-projet
             
             - name: List generated files
               run: ls -la dist/mon-projet
