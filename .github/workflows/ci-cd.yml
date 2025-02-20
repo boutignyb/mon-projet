@@ -42,6 +42,9 @@ jobs:
             - name: Unit test
               run: npm run test:ci
             
+            - name: Check artifact size
+              run: du -sh dist/mon-projet
+            
             - name: Building app
               run: npm run build:prod
               
@@ -71,8 +74,17 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: github-pages
-                path: './build' 
+                path: './build'
             
+            - name: Check for symlinks
+              run: find dist/mon-projet -type l
+              
+            - name: Remove symlinks
+              run: find dist/mon-projet -type l -delete
+
+            - name: Fix file permissions
+              run: chmod -R 755 dist/mon-projet
+
             - name: Deploy to GitHub Pages
               uses: actions/deploy-pages@v4
               with:
