@@ -45,11 +45,14 @@ jobs:
             - name: Building app
               run: npm run build:prod
               
-            - name: Upload artifact
+            - name: Upload artifact for GitHub Pages
               uses: actions/upload-artifact@v4
               with:
-                name: my-artifact
-                path: dist
+                name: github-pages
+                path: dist/mon-projet
+            
+            - name: List generated files
+              run: ls -la dist/mon-projet
     
     Deployment:
         runs-on: ubuntu-latest
@@ -58,7 +61,7 @@ jobs:
             pages: write
             id-token: write
         env:
-            name: my-artifact
+            name: github-pages
             url: ${{ github.repositoryUrl }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -67,10 +70,10 @@ jobs:
             - name: Download artifact
               uses: actions/download-artifact@v4
               with:
-                name: my-artifact
+                name: github-pages
                 path: './build' 
             
             - name: Deploy to GitHub Pages
-              id: deployment
               uses: actions/deploy-pages@v4
-              
+              with:
+                  artifact_name: github-pages
