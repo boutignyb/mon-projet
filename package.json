@@ -9,7 +9,8 @@
     "test": "ng test",
     "test:ci": "ng test -c=ci",
     "postinstall": "webdriver-manager update --standalone false --gecko false",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build:prod": "ng build --prod"
   },
   "private": true,
   "dependencies": {

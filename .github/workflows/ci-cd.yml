@@ -40,4 +40,8 @@ jobs:
               run: npm run lint
         
             - name: Unit test
-              run: npm run test:ci  
+              run: npm run test:ci
+            
+            - name: Building app
+              run: npm run build:prod
+                
