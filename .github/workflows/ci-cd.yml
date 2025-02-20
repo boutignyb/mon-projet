@@ -22,7 +22,7 @@ jobs:
               run: npm i --save-dev webdriver-manager 
               
             - name: Install Protractor
-              run: npm install -g protractor && webdriver-manager update
+              run: npm i -g protractor && webdriver-manager update
 
             - name: Install dependencies
               run: npm ci
@@ -31,10 +31,10 @@ jobs:
               run: sudo apt-get install -y google-chrome-stable  
 
             - name: Install Chrome dependencies
-              run: npm install --save-dev install-chrome-dependencies  
+              run: npm i --save-dev install-chrome-dependencies  
             
             - name: Install Eslint
-              run: npm install eslint
+              run: npm i eslint
             
             - name: Lint
               run: npm run lint
@@ -48,7 +48,7 @@ jobs:
             - name: Building app
               run: npm run build -- --configuration=production
             
-            - name: Vérifier les fichiers générés
+            - name: Verifying generated files
               run: ls -lah dist/mon-projet
               
             - name: Upload artifact for GitHub Pages
@@ -70,9 +70,8 @@ jobs:
             name: github-pages
             USERS: ${{ github.actor }}
             USERS_ID: ${{ github.actor_id }}
-            URL_REPO: ${{ github.repositoryUrl }}
+            URL: ${{ steps.deployment.outputs.page_url }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
         steps:
             - name: Cleaning old builds
@@ -106,6 +105,7 @@ jobs:
               run: chmod -R 755 dist/mon-projet
 
             - name: Deploy to GitHub Pages
+              id: deployment  
               uses: actions/deploy-pages@v4
               with:
                   artifact_name: github-pages
