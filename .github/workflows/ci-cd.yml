@@ -14,12 +14,16 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Use Node.js
-              uses: actions/setup-node
+              uses: actions/setup-node@v4
               with:
                 node-version: '22'
+                cache: 'npm'
             
             - name: Install dependencies
-              run: npm install
+              run: npm ci
+
+            - name: Install Chrome
+              run: sudo apt-get install -y google-chrome-stable  
 
             - name: Install Chrome dependencies
               run: npm install --save-dev install-chrome-dependencies  
