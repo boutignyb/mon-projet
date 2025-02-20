@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test -c=ci",
-    "postinstall": "webdriver-manager update --standalone false --gecko false"
+    "postinstall": "webdriver-manager update --standalone false --gecko false",
+    "lint": "eslint ."
   },
   "private": true,
   "dependencies": {
