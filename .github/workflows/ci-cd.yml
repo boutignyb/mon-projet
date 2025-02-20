@@ -75,11 +75,17 @@ jobs:
 
 
         steps:
+            - name: Cleaning old builds
+              run: rm -rf dist/mon-projet && mkdir dist/mon-projet
+
             - name: Download artifact
               uses: actions/download-artifact@v4
               with:
                 name: github-pages
                 path: dist/mon-projet
+            
+            - name: Verifying donwload
+              run: ls -ls dist/mon-projet  
             
             - name: Check for symlinks
               run: find dist/mon-projet -type l
