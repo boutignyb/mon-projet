@@ -43,7 +43,7 @@ jobs:
               run: npm run test:ci
             
             - name: Building app
-              run: npm run build:prod
+              run: npm run build -- --configuration=production
               
             - name: Upload artifact for GitHub Pages
               uses: actions/upload-artifact@v4
@@ -74,13 +74,16 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: github-pages
-                path: 'dist/mon-projet'
+                path: dist/mon-projet
             
             - name: Check for symlinks
-              run: find dist/mon-projet -type l
+              run: find dist/mon-projet -type l -ls
               
             - name: Remove symlinks
               run: find dist/mon-projet -type l -delete
+            
+            - name: Verify build output
+              run: ls -l dist/mon-projet
 
             - name: Fix file permissions
               run: chmod -R 755 dist/mon-projet
