@@ -18,6 +18,12 @@ jobs:
               with:
                 node-version: '22'
             
+            - name: Instal WebDriver manager
+              run: npm i --save-dev webdriver-manager 
+              
+            - name: Install Protractor
+              run: npm install -g protractor && webdriver-manager update
+
             - name: Install dependencies
               run: npm ci
 
