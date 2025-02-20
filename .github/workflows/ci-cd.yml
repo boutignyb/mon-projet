@@ -72,6 +72,7 @@ jobs:
             USERS_ID: ${{ github.actor_id }}
             URL: ${{ github.server_url }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ACTIONS_STEP_DEBUG: true
 
         steps:
             - name: Cleaning old builds
@@ -87,7 +88,8 @@ jobs:
                 path: dist/mon-projet
             
             - name: Verifying donwload
-              run: ls -lah dist/mon-projet
+              run: ls -lah 
+              working-directory: dist/mon-projet
             
             - name: Check artifact size
               run: du -sh dist/mon-projet
@@ -109,3 +111,4 @@ jobs:
               uses: actions/deploy-pages@v4
               with:
                   artifact_name: github-pages
+                  token: ${{ secrets.GITHUB_TOKEN }}
