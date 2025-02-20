@@ -54,9 +54,6 @@ jobs:
                 name: github-pages
                 path: dist/mon-projet
             
-            - name: Check artifact size
-              run: du -sh dist/mon-projet
-            
             - name: List generated files
               run: ls -la dist/mon-projet
     
@@ -85,7 +82,10 @@ jobs:
                 path: dist/mon-projet
             
             - name: Verifying donwload
-              run: ls -ls dist/mon-projet  
+              run: ls -ls dist/mon-projet
+            
+            - name: Check artifact size
+              run: du -sh dist/mon-projet
             
             - name: Check for symlinks
               run: find dist/mon-projet -type l
