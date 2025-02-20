@@ -70,7 +70,7 @@ jobs:
             name: github-pages
             USERS: ${{ github.actor }}
             USERS_ID: ${{ github.actor_id }}
-            URL: ${{ steps.deployment.outputs.page_url }}
+            URL: ${{ github.server_url }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         steps:
