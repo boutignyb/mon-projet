@@ -85,7 +85,7 @@ jobs:
             - name: Download artifact
               uses: actions/download-artifact@v4
               with:
-                name: github-pages
+                name: MyApp-v1
                 path: release.zip
             
             - name: Verifying donwload
