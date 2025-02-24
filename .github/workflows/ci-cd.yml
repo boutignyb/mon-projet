@@ -74,7 +74,7 @@ jobs:
             name: "Production"
             USERS: ${{ github.actor }}
             USERS_ID: ${{ github.actor_id }}
-            URL: bertrandboutignyformationgm.onmicrosoft.com
+            URL: https://myapp-v1-bjdfhkaefcasgcch.swedencentral-01.azurewebsites.net/
 
         steps:
             - name: Checkout repository
