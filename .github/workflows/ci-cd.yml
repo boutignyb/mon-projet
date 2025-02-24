@@ -75,8 +75,6 @@ jobs:
             USERS: ${{ github.actor }}
             USERS_ID: ${{ github.actor_id }}
             URL: myapp-v1-bjdfhkaefcasgcch.swedencentral-01.azurewebsites.net
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            ACTIONS_STEP_DEBUG: true
 
         steps:
             - name: Checkout repository
@@ -86,14 +84,14 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 name: MyApp-v1
-                path: release.zip
+                path: ./home/bertrand/release.zip
             
             - name: Verifying donwload
               run: ls -lah 
               working-directory: release.zip
             
             - name: Unzip artifact for deployment
-              run: unzip release.zip
+              run: unzip ./home/bertrand/release.zip
 
             - name: Login to Azure
               uses: azure/login@v2
