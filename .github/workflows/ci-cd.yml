@@ -74,7 +74,7 @@ jobs:
             id-token: write
         env:
             name: "Production"
-            URL: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+            URL: myapp-v1-bjdfhkaefcasgcch.swedencentral-01.azurewebsites.net
 
         steps:
             - name: Download artifact
