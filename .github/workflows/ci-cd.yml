@@ -86,13 +86,28 @@ jobs:
               run: ls -lah 
               working-directory:
             
+            - name: Check artifact size
+              run: du -sh release.zip
+            
+            - name: Check for symlinks
+              run: find release.zip -type l
+              
+            - name: Remove symlinks
+              run: find release.zip -type l -delete
+            
+            - name: Verify build output
+              run: ls -l release.zip
+
+            - name: Fix file permissions
+              run: chmod -R 755 release.zip
+
             - name: Unzip artifact for deployment
               run: unzip release.zip
 
             - name: Login to Azure
               uses: azure/login@v2
               with:
-                client-id: ${{ secrets.AZURE_CLIENT_ID && secrets.AZURE_CLIENT_ID2}}
+                client-id: ${{ secrets.AZURE_CLIENT_ID2}}
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 enable-AzPSSession: true  
@@ -103,21 +118,6 @@ jobs:
                 azcliversion: latest
                 inlineScript: |
                   az account show
-
-#            - name: Check artifact size
-#             run: du -sh release.zip
-            
-#            - name: Check for symlinks
-#              run: find release.zip -type l
-              
-#            - name: Remove symlinks
-#              run: find release.zip -type l -delete
-            
-#            - name: Verify build output
-#              run: ls -l release.zip
-
-#            - name: Fix file permissions
-#              run: chmod -R 755 release.zip
 
             - name: 'Deploy to Azure Web App'
               id: deploy-to-webapp
