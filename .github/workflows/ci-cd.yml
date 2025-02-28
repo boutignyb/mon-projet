@@ -84,7 +84,7 @@ jobs:
             
             - name: Verifying donwload
               run: ls -lah 
-              working-directory: release.zip
+              working-directory:
             
             - name: Unzip artifact for deployment
               run: unzip release.zip
